@@ -719,7 +719,7 @@ const providerURL = 'https://sepolia-rollup.arbitrum.io/rpc';
 
 // Create a provider and signer (replace with your private key)
 const provider = new ethers.JsonRpcProvider(providerURL);
-const privateKey = 'a15d5becf529dfc7b4ada8751748f3703fe177f71e0aa27fb0cdc00148899f74';
+const privateKey = 'YOUR_PRIVATE_KEY';
 const signer = new ethers.Wallet(privateKey, provider);
 
 // Create an instance of the contract
