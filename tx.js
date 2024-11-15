@@ -28,7 +28,7 @@ async function getTransactionLogs(txHash, apiKey) {
 
 // Example usage
 const txHash = '0x5d329954fae7d19b2fb9abf0e6862735243b1079c58e0ea307d7e933657ac083';  // Transaction hash
-const apiKey = 'INDGXUFIYJHXJZ8IK5XD8HWCWMR3IYX9MF';  // Your Etherscan API key
+const apiKey = 'YOUR_API_KEY';  // Your Etherscan API key
 
 getTransactionLogs(txHash, apiKey)
   .then(logs => console.log(logs))
