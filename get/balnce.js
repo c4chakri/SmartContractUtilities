@@ -1,10 +1,7 @@
 const { ethers } = require('ethers');
 
 async function getTokenBalance(rpcUrl, contractAddress, walletAddress) {
-    const provider = new ethers.providers.JsonRpcProvider(rpcUrl, {
-        name: 'sepolia',
-        chainId: 11155111
-    });
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
 
     const erc20Abi = [
         "function balanceOf(address owner) view returns (uint256)",
