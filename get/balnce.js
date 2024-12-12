@@ -8,7 +8,8 @@ async function getTokenBalance(rpcUrl, contractAddress, walletAddress) {
         "function name() view returns (string)",
         "function symbol() view returns (string)",
         "function decimals() view returns (uint8)",
-        "function totalSupply() view returns (uint256)"
+        "function totalSupply() view returns (uint256)",
+        "function owner() view returns (address)"
     ];
 
     const contract = new ethers.Contract(contractAddress, erc20Abi, provider);
@@ -21,17 +22,20 @@ async function getTokenBalance(rpcUrl, contractAddress, walletAddress) {
         const symbol = await contract.symbol();
         const decimals = await contract.decimals();
         const totalSupply = await contract.totalSupply();
-
-        console.table({
-            name,
-            symbol,
-            decimals,
-            totalSupply: ethers.utils.formatUnits(totalSupply, decimals)
-        });
+        const owner = await contract.owner();
+    
 
         const balance = await contract.balanceOf(walletAddress);
 
-        return ethers.utils.formatUnits(balance);
+        const erc20Data = {
+            name,
+            symbol,
+            decimals,
+            totalSupply: ethers.utils.formatUnits(totalSupply, decimals),
+            owner
+        };
+
+        return erc20Data;
     } catch (error) {
         console.error('Error fetching balance:', error);
         return null;
@@ -44,5 +48,5 @@ const contractAddress = '0x28a9BBCB900e4bE4541761E66681f0704e7aB5Ad';
 const walletAddress = '0x8974775bF9Ed9cac57D7cFc40f35c78eFda9Af5d';
 
 getTokenBalance(rpcUrl, contractAddress, walletAddress)
-    .then(balance => console.log(`Token Balance: ${balance}`))
+    .then(erc20Data => console.log(`ERC20 Data: ${JSON.stringify(erc20Data, null, 2)}`))
     .catch(err => console.error(err));
