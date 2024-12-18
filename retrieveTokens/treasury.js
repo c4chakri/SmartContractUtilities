@@ -5,7 +5,6 @@ const userAddress = "0xBBe52729c820470fce82A959b8E983985F15528d";
 
 const getAllTokenBalances = async (userAddress) => {
   try {
-    // Connect to Ethereum provider
     const provider = new ethers.providers.JsonRpcProvider(INFURA_URL);
     const network = await provider.getNetwork();
     console.log(`Connected to network: ${network.name} (chainId: ${network.chainId})\n`);
